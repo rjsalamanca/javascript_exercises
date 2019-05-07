@@ -337,7 +337,7 @@ rockPaperScissors('paper', 'paper')
 function checkGrid(arrCheck) {
     let countX = 0;
     let countO = 0;
-        
+
     for (let i = 0; i < arrCheck.length; i++) {
         if (arrCheck[i] == 'X') {
             countX++;
@@ -355,56 +355,56 @@ function checkGrid(arrCheck) {
     }
 }
 
-function ticTacToe(grid){
-    for(var i = 0; i < 3; i++){
+function ticTacToe(grid) {
+    for (var i = 0; i < 3; i++) {
         // gets current row
         const currRow = grid[i];
         // gets the column
         const currColumn = grid.map(x => x[i]);
-        
+
         const checkRow = checkGrid(currRow);
         const checkColumn = checkGrid(currColumn);
         let checkDiag1 = false;
         let checkDiag2 = false;
-                
-        if(i == 1){
-          // hard coded diagonals
-          currDiagonalTopLeftToBottomRight = [grid[i-1][0],currRow[1],grid[i+1][2]]
-          currDiagonalBottomLeftToTopRight = [grid[i-1][2],currRow[1],grid[i+1][0]]
-          checkDiag1 = checkGrid(currDiagonalTopLeftToBottomRight);
-          checkDiag2 = checkGrid(currDiagonalBottomLeftToTopRight);
+
+        if (i == 1) {
+            // hard coded diagonals
+            currDiagonalTopLeftToBottomRight = [grid[i - 1][0], currRow[1], grid[i + 1][2]]
+            currDiagonalBottomLeftToTopRight = [grid[i - 1][2], currRow[1], grid[i + 1][0]]
+            checkDiag1 = checkGrid(currDiagonalTopLeftToBottomRight);
+            checkDiag2 = checkGrid(currDiagonalBottomLeftToTopRight);
         }
-      
-        if(checkRow != false){
-          return checkRow;
-        } else if(checkColumn != false){
-          return checkColumn;
-        } else if(checkDiag1 != false){
-          return checkDiag1;
-        } else if(checkDiag2 != false){
-          return checkDiag2;
+
+        if (checkRow != false) {
+            return checkRow;
+        } else if (checkColumn != false) {
+            return checkColumn;
+        } else if (checkDiag1 != false) {
+            return checkDiag1;
+        } else if (checkDiag2 != false) {
+            return checkDiag2;
         }
     }
     return null;
 }
 
-console.log( ticTacToe([
+console.log(ticTacToe([
     ['O', 'O', 'O'],
     ['X', null, 'X'],
     [null, 'X', null]
-    ]) )
+]))
 //'O'
 
-console.log( ticTacToe([
-  ['O', 'X', 'O'],
-  ['O', 'X', null],
-  [null, 'X', null]
-  ]) )
+console.log(ticTacToe([
+    ['O', 'X', 'O'],
+    ['O', 'X', null],
+    [null, 'X', null]
+]))
 //'X'
 
-console.log( ticTacToe([
-  ['O', 'X', 'O'],
-  ['O', 'O', null],
-  [null, 'X', 'X']
-  ]) )
+console.log(ticTacToe([
+    ['O', 'X', 'O'],
+    ['O', 'O', null],
+    [null, 'X', 'X']
+]))
 //null
