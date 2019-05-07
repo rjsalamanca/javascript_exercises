@@ -225,18 +225,18 @@ longLongVowels('Man')
 // Sum the Numbers //
 /////////////////////
 
-function sumNumbers(arrNum){
-    console.log(arrNum.reduce((tot, curr) => tot+curr));
+function sumNumbers(arrNum) {
+    console.log(arrNum.reduce((tot, curr) => tot + curr));
 }
 
-sumNumbers([1, 4, 8]) 
+sumNumbers([1, 4, 8])
 
 ////////////////////////
 // Just the Positives //
 ////////////////////////
 
-function positiveNumbers(arrNum){
-    console.log( arrNum.filter(arrNum => arrNum >= 0));
+function positiveNumbers(arrNum) {
+    console.log(arrNum.filter(arrNum => arrNum >= 0));
 }
 
 positiveNumbers([1, -3, 5, -3, 0])
@@ -250,14 +250,14 @@ positiveNumbers([-1, -2, -3])
 // Matrix Addition //
 /////////////////////
 
-function matrixAdd(arrMatrix){
+function matrixAdd(arrMatrix) {
     const matrix1 = arrMatrix[0];
     const matrix2 = arrMatrix[1];
     let answer = []
-    
-    for(let i = 0; i < arrMatrix.length; i++){
+
+    for (let i = 0; i < arrMatrix.length; i++) {
         let temp_added_list = [];
-        for(let j = 0; j < matrix1.length; j++){
+        for (let j = 0; j < matrix1.length; j++) {
             temp_added_list.push(matrix1[i][j] + matrix2[i][j])
         }
         answer.push(temp_added_list)
@@ -272,16 +272,16 @@ matrixAdd([[[1, 3], [2, 4]], [[5, 2], [1, 0]]])
 // Matrix Multiplcation //
 //////////////////////////
 
-function matrixMultiply(arrMatrix1,arrMatrix2){
+function matrixMultiply(arrMatrix1, arrMatrix2) {
     const matrix1 = arrMatrix1;
     const matrix2 = arrMatrix2;
     let list_answer = [];
 
-    for(let i = 0; i < matrix1.length; i++){
+    for (let i = 0; i < matrix1.length; i++) {
         let temp = []
-        for(let j = 0; j < matrix2.length; j++){
+        for (let j = 0; j < matrix2.length; j++) {
             let temp_multi = 0
-            for(let k = 0; k < 2; k++){
+            for (let k = 0; k < 2; k++) {
                 temp_multi += matrix1[i][k] * matrix2[k][j];
 
                 console.log(matrix1[i][0])
@@ -302,23 +302,23 @@ matrixMultiply([[2, 4], [3, 4]], [[5, 2], [3, 1]])
 // Rock Paper Scissors //
 /////////////////////////
 
-function rockPaperScissors(p1,p2){
+function rockPaperScissors(p1, p2) {
     status = ''
-    if(p1 == p2){
+    if (p1 == p2) {
         status = 'draw'
-    } else if(p1 == 'rock' && p2 == 'scissors'){
+    } else if (p1 == 'rock' && p2 == 'scissors') {
         status = 'Player 1'
-    } else if(p1 == 'rock' && p2 == 'paper'){
+    } else if (p1 == 'rock' && p2 == 'paper') {
         status = 'Player 2'
-    } else if(p1 == 'paper' && p2 == 'rock'){
+    } else if (p1 == 'paper' && p2 == 'rock') {
         status = 'Player 1'
-    } else if(p1 == 'paper' && p2 == 'scissors'){
+    } else if (p1 == 'paper' && p2 == 'scissors') {
         status = 'Player 2'
-    } else if(p1 == 'scissors' && p2 == 'rock'){
+    } else if (p1 == 'scissors' && p2 == 'rock') {
         status = 'Player 2'
-    } else if(p1 == 'scissors' && p2 == 'paper'){
+    } else if (p1 == 'scissors' && p2 == 'paper') {
         status = 'Player 1'
-    } 
+    }
     console.log(status)
 }
 
@@ -333,29 +333,78 @@ rockPaperScissors('paper', 'paper')
 // Tic Tac Toe //
 /////////////////
 
-function ticTacToe(grid){
-    for(var i = 0; i < grid.length; i++){
-        currRow = grid[0]
-        countXRow = 0
-        countORow = 0
-        //check left and right;
-
-        for(j = 0; j < currRow.length; j++){
-            if(currRow[i] == 'X'){
-                countXRow++;
-            } else if(currRow[i] == 'O'){
-                countORow++;
-            }
+// checks grid
+function checkGrid(arrCheck) {
+    let countX = 0;
+    let countO = 0;
+        
+    for (let i = 0; i < arrCheck.length; i++) {
+        if (arrCheck[i] == 'X') {
+            countX++;
+        } else if (arrCheck[i] == 'O') {
+            countO++;
         }
+    }
 
-        console.log(countXRow)
-        console.log(countYRow);
+    if (countX == 3) {
+        return 'X';
+    } else if (countO == 3) {
+        return 'O'
+    } else {
+        return false;
     }
 }
 
-ticTacToe([
+function ticTacToe(grid){
+    for(var i = 0; i < 3; i++){
+        // gets current row
+        const currRow = grid[i];
+        // gets the column
+        const currColumn = grid.map(x => x[i]);
+        
+        const checkRow = checkGrid(currRow);
+        const checkColumn = checkGrid(currColumn);
+        let checkDiag1 = false;
+        let checkDiag2 = false;
+                
+        if(i == 1){
+          // hard coded diagonals
+          currDiagonalTopLeftToBottomRight = [grid[i-1][0],currRow[1],grid[i+1][2]]
+          currDiagonalBottomLeftToTopRight = [grid[i-1][2],currRow[1],grid[i+1][0]]
+          checkDiag1 = checkGrid(currDiagonalTopLeftToBottomRight);
+          checkDiag2 = checkGrid(currDiagonalBottomLeftToTopRight);
+        }
+      
+        if(checkRow != false){
+          return checkRow;
+        } else if(checkColumn != false){
+          return checkColumn;
+        } else if(checkDiag1 != false){
+          return checkDiag1;
+        } else if(checkDiag2 != false){
+          return checkDiag2;
+        }
+    }
+    return null;
+}
+
+console.log( ticTacToe([
     ['O', 'O', 'O'],
     ['X', null, 'X'],
     [null, 'X', null]
-    ])
+    ]) )
 //'O'
+
+console.log( ticTacToe([
+  ['O', 'X', 'O'],
+  ['O', 'X', null],
+  [null, 'X', null]
+  ]) )
+//'X'
+
+console.log( ticTacToe([
+  ['O', 'X', 'O'],
+  ['O', 'O', null],
+  [null, 'X', 'X']
+  ]) )
+//null
