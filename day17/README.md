@@ -78,9 +78,10 @@ Write a function leetspeak which is given a string, and returns the leetspeak eq
 * S => 5
 * T => 7
 
-    > leetspeak('Leet')
-    > 'l337'
-
+```
+> leetspeak('Leet')
+> 'l337'
+```
 ## Long-long Vowels
 
 Write a function, which is given a string, return the result of extending any long vowels to the length of 5.
