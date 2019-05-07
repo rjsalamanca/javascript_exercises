@@ -79,7 +79,7 @@ Write a function leetspeak which is given a string, and returns the leetspeak eq
 * T => 7
 
     > leetspeak('Leet')
-    l337
+    'l337'
 
 ## Long-long Vowels
 
