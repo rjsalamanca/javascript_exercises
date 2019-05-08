@@ -85,7 +85,7 @@ function factors(num) {
 
     for (let i = 0; i <= num; i++) {
         for (let j = 0; j <= num; j++) {
-            if (i * j == 120) {
+            if (i * j == num) {
                 holdFactors.push(i);
             }
         }
