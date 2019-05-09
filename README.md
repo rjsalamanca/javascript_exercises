@@ -13,3 +13,7 @@
 
     Created a SEMI functional calculator. The objective of this exercise was to
     manipulate the DOM and get a better understanding of how to use HTML and Javascript
+
+## Day 19 - Calculator Work Continuation
+
+    Continued to work on the caluator thats in the day 18 folder. 
