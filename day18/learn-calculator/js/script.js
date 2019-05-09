@@ -8,10 +8,11 @@ const input = document.getElementById('input'), // input/output button
     regex = /\+|\-|\*|\//g; // Regex operators
     
 let resultDisplayed = false; // flag to keep an eye on what output is displayed
+let lastInput = '';
 
 // adding click handlers to number buttons
 function addInput(addInput){
-    const lastInput = input.innerHTML != '' ? input.innerHTML[input.innerHTML.length-1] : '';
+    //lastInput = input.innerHTML != '' ? input.innerHTML[input.innerHTML.length-1] : '';
 
     if( (lastInput.match(regex) != null) && (addInput.match(regex) != null) ){
         if(lastInput != addInput){
@@ -21,7 +22,7 @@ function addInput(addInput){
         }
     } else {
         if((lastInput == '') && (addInput.match(regex) != null)){
-            console.log('No can\'t start with operator!');
+            console.log('Start with a number!');
         } else {
             input.innerHTML += addInput; 
         }
@@ -30,7 +31,18 @@ function addInput(addInput){
 
 number.forEach(num=>{
     num.addEventListener('click',function(){
-        addInput(num.innerHTML)
+        lastInput = input.innerHTML != '' ? input.innerHTML[input.innerHTML.length-1] : '';
+        console.log(lastInput)
+        if(resultDisplayed === false){
+            addInput(num.innerHTML)
+        } else if ((resultDisplayed === true) && (lastInput == '+' || lastInput == '-' || lastInput == '*' || lastInput == '/')){
+            console.log('NO')
+            resultDisplayed = false;
+        } else{
+            resultDisplayed = false;
+            input.innerHTML = "";
+            addInput(num.innerHTML)
+        }
     });
 })
 
@@ -51,7 +63,7 @@ result.addEventListener('click',function(){
     // Look for division
 
     // Look for addition & subtraction
-
+    resultDisplayed = true;
     console.log(getNumbers)
     console.log(getOperators)
 })
