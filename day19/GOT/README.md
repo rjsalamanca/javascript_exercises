@@ -1,5 +1,5 @@
 # Game of Thrones Exercises (now with 100% more Javascript!)
-## Solutions stored in index.js
+## Solutions stored in scripts/index.js
 
 * How many characters names start with "A"?
 * How many characters names start with "Z"?
