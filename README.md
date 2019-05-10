@@ -16,4 +16,5 @@
 
 ## Day 19 - Calculator Work Continuation
 
-    Continued to work on the caluator thats in the day 18 folder. 
+    Continued to work on the caluator thats in the day 18 folder.
+    Reworked old Game of Thrones python exercise into JavaScript.
