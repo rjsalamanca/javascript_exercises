@@ -1,14 +1,3 @@
-console.log(`There are ${characters.length} characters in the array.`);
-
-// * How many characters names start with "A"?
-// * How many characters names start with "Z"?
-// * How many characters are dead?
-// * Who has the most titles?
-// * How many are Valyrian?
-// * What actor plays "Hot Pie" (and don't use IMDB)?
-
-console.log(houses[`https://www.anapioficeandfire.com/api/houses/1`])
-
 let countA = 0;
 let countZ = 0;
 let deadCount = 0;
@@ -19,8 +8,10 @@ let hotPie = '';
 let notTv = 0;
 let targaryenCount = 0;
 
+let body = document.getElementById('body');
+let answerList = document.getElementById('answers');
+
 characters.forEach(function(character){
-    // * How many characters names start with "A"?
     if(character.name[0]=='A'){
         countA++; 
     } else if (character.name[0]=='Z'){
@@ -57,6 +48,10 @@ characters.forEach(function(character){
 function house_histogram(){
     let histogram = {};
 
+    const createH1 = document.createElement('h2');
+    const houseHistogramDiv = document.createElement('div');
+    createH1.appendChild(document.createTextNode('House Histogram'));
+
     for(var key in houses){
         histogram[houses[key]] = 0 
     }
@@ -72,18 +67,29 @@ function house_histogram(){
     });
 
     for(var house in histogram){
-        console.log(`${house} : ${histogram[house]}`);
+        let br = document.createElement("br");
+        houseHistogramDiv.appendChild(document.createTextNode(`${house} : ${histogram[house]}`))
+        houseHistogramDiv.appendChild(br);
     }
+    body.append(createH1);
+    body.append(houseHistogramDiv)
 }
 
+function addToList(answer){
+    let holdAnswers = document.createElement('li');
 
-console.log(`Characters that start with A: ${countA}`)
-console.log(`Characters that start with Z: ${countZ}`)
-console.log(`Characters That are Dead: ${deadCount}`)
-console.log(`Most Title Count Goes to: ${mostTitlesWinner}`)
-console.log(`Valyrian Count: ${valyrianCount}`)
-console.log(`Hot Pie is played by: ${hotPie}`)
-console.log(`Characters not in the TV show: ${notTv}`)
-console.log(`Characters with the last name Targaryen: ${targaryenCount}`)
+    answerNode = document.createTextNode(answer);
+    holdAnswers.appendChild(answerNode)
+    answerList.append(holdAnswers)
+}
+
+addToList(`Characters that start with A: ${countA}`)
+addToList(`Characters that start with Z: ${countZ}`)
+addToList(`Characters That are Dead: ${deadCount}`)
+addToList(`Most Title Count Goes to: ${mostTitlesWinner}`)
+addToList(`Valyrian Count: ${valyrianCount}`)
+addToList(`Hot Pie is played by: ${hotPie}`)
+addToList(`Characters not in the TV show: ${notTv}`)
+addToList(`Characters with the last name Targaryen: ${targaryenCount}`)
 
 house_histogram()
