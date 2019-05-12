@@ -114,6 +114,7 @@ console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]))
 // may contain nested objects
 function nestedEvenSum() {
   // add whatever parameters you deem necessary
+  return 1;
 }
 
 // EXAMPLES OF THIS ONE --------------->
