@@ -6,7 +6,7 @@
 // factorial(7) // 5040
 
 function factorial(num) {
-    if(num == 1){
+    if (num == 1) {
         return 1;
     }
 
@@ -21,11 +21,11 @@ function factorial(num) {
 // 2 to the power of 4 = 2*2*2*2
 
 function power(base, exponent) {
-    if(exponent < 1){
+    if (exponent < 1) {
         return 1;
     }
 
-    return base * power(base,exponent-1);
+    return base * power(base, exponent - 1);
 }
 
 //console.log(power(2,4));
@@ -36,7 +36,7 @@ function power(base, exponent) {
 // productOfArray([1,2,3,10]) // 60
 
 function productOfArray(arr) {
-    if(arr.length == 0){
+    if (arr.length == 0) {
         return 1;
     }
     popped = arr.pop();
@@ -60,12 +60,12 @@ function recursiveRange(num) {
 // fib(28) // 317811
 // fib(35) // 9227465
 
-function fib(n){
-    return (n <= 2) ? 1 : fib(n - 1) + fib(n - 2);   
+function fib(n) {
+    return (n <= 2) ? 1 : fib(n - 1) + fib(n - 2);
 }
 
-//console.log(fib(4))
-console.log(fib(6))
+// console.log(fib(4))
+// console.log(fib(6))
 // console.log(fib(28)) 
 // console.log(fib(35)) 
 
@@ -75,14 +75,14 @@ console.log(fib(6))
 
 function reverse(str) {
     str = str.split('')
-    if(str.length < 1){
+    if (str.length < 1) {
         return '';
     }
-    
+
     return str.pop() + reverse(str.join(''))
 }
 
-console.log(reverse('cloud'))
+// console.log(reverse('cloud'))
 
 // write a function that uses recursion to take an array of arrays and returns a new
 // array with all the values flattened
@@ -91,53 +91,65 @@ console.log(reverse('cloud'))
 // flatten([[1],[2],[3]]) // [1,2,3]
 // flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1,2,3]
 
-function flatten(arr){
-    if(!Array.isArray(arr)) {
+function flatten(arr) {
+    if (!Array.isArray(arr)) {
         return arr;
     }
 
     var array = [];
 
-    for(var i = 0; i < arr.length; i++) {
+    for (var i = 0; i < arr.length; i++) {
         array = array.concat(flatten(arr[i]));
     }
 
     return array;
 }
 
-console.log(flatten([1, 2, 3, [4, 5] ]));
-console.log(flatten([1, [2, [3, 4], [[5]]]]))
-console.log(flatten([[1],[2],[3]]))
-console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]))
+// console.log(flatten([1, 2, 3, [4, 5]]));
+// console.log(flatten([1, [2, [3, 4], [[5]]]]))
+// console.log(flatten([[1], [2], [3]]))
+// console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]))
 
 // write a recursive function that returns the sum of all even numbers in an object which
 // may contain nested objects
-function nestedEvenSum() {
-  // add whatever parameters you deem necessary
-  return 1;
+function nestedEvenSum(dict) {
+    let total = 0;
+
+    Object.keys(dict).forEach((key) => {
+        if (typeof(dict[key]) == 'object') {
+            total += nestedEvenSum(dict[key]);
+        }
+        else if (typeof(dict[key]) == 'number') {
+            if (dict[key] % 2 == 0) {
+                total += dict[key];
+            }
+        }
+    });
+
+    return total;
 }
 
-// EXAMPLES OF THIS ONE --------------->
+//EXAMPLES OF THIS ONE --------------->
 
-// var obj1 = {
-//   outer: 2,
-//   obj: {
-//     inner: 2,
-//     otherObj: {
-//       superInner: 2,
-//       notANumber: true,
-//       alsoNotANumber: "yup"
-//     }
-//   }
-// }
+var obj1 = {
+  outer: 2,
+  obj: {
+    inner: 2,
+    otherObj: {
+      superInner: 2,
+      notANumber: true,
+      alsoNotANumber: "yup"
+    }
+  }
+}
 
-// var obj2 = {
-//   a: 2,
-//   b: {b: 2, bb: {b: 3, bb: {b: 2}}},
-//   c: {c: {c: 2}, cc: 'ball', ccc: 5},
-//   d: 1,
-//   e: {e: {e: 2}, ee: 'car'}
-// };
+var obj2 = {
+  a: 2,
+  b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+  c: {c: {c: 2}, cc: 'ball', ccc: 5},
+  d: 1,
+  e: {e: {e: 2}, ee: 'car'}
+};
 
-// nestedEvenSum(obj1); // 6
-// nestedEvenSum(obj2); // 10
+console.log(nestedEvenSum(obj1)); // 6
+console.log(nestedEvenSum(obj2)); // 10
